@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -11,16 +11,13 @@ import {
   PieChart,
   Pie,
   Cell,
-  LineChart,
-  Line,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
-  TreemapChart,
-  Treemap,
-  Legend } from 'recharts'
+  Legend
+} from 'recharts'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { formatCompactCurrency, formatPercentage, formatNumber } from '@/lib/utils'
 import { customerSegments, featureAdoption } from '@/data/mockData'

@@ -18,8 +18,6 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
-  TreemapChart,
-  Treemap,
   Legend } from 'recharts'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { formatCompactCurrency, formatPercentage, formatNumber } from '@/lib/utils'
@@ -308,15 +306,13 @@ export function MarketAnalysis() {
             <p className="text-sm text-gray-600">Potential expansion segments and penetration rates</p>
           </div>
           <ResponsiveContainer width="100%" height={300}>
-            <Treemap
-              data={marketOpportunities}
-              dataKey="currentRevenue"
-              aspectRatio={4}
-              stroke="#fff"
-              fill="#6366f1"
-            >
+            <BarChart data={marketOpportunities} dataKey="currentRevenue">
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis dataKey="segment" stroke="#6b7280" />
+              <YAxis stroke="#6b7280" />
               <Tooltip content={<OpportunityTooltip />} />
-            </Treemap>
+              <Bar dataKey="currentRevenue" fill="#6366f1" />
+            </BarChart>
           </ResponsiveContainer>
 
           {/* Opportunity Summary */}
