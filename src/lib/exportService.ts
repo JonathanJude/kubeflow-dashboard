@@ -238,8 +238,8 @@ class ExportService {
     const rows = metrics.map(metric => [
       metric.id,
       metric.title,
-      metric.value.toString(),
-      metric.change.toString(),
+      String(metric.value || 0),
+      String(metric.change || 0),
       metric.changeType,
       metric.unit || '',
       metric.format || '',
@@ -257,10 +257,10 @@ class ExportService {
       const headers = ['Date', 'Enterprise', 'Startup', 'SMB', 'Total']
       const rows = revenue.trends.map((trend: any) => [
         trend.date,
-        trend.enterprise.toString(),
-        trend.startup.toString(),
-        trend.smb.toString(),
-        trend.total.toString()
+        String(trend.enterprise || 0),
+        String(trend.startup || 0),
+        String(trend.smb || 0),
+        String(trend.total || 0)
       ])
       csvContent += this.createCSVContent(headers, rows) + '\n\n'
     }
@@ -271,9 +271,9 @@ class ExportService {
       const headers = ['Country', 'Revenue', 'Percentage', 'Growth']
       const rows = revenue.geographic.map((geo: any) => [
         geo.country,
-        geo.revenue.toString(),
-        geo.percentage.toString(),
-        geo.growth.toString()
+        String(geo.revenue || 0),
+        String(geo.percentage || 0),
+        String(geo.growth || 0)
       ])
       csvContent += this.createCSVContent(headers, rows) + '\n\n'
     }
@@ -285,7 +285,7 @@ class ExportService {
     const headers = ['Metric', 'Value']
     const rows = Object.entries(operational).map(([key, value]) => [
       this.formatKeyName(key),
-      value.toString()
+      String(value || '')
     ])
     return this.createCSVContent(headers, rows)
   }
@@ -294,7 +294,7 @@ class ExportService {
     const headers = ['Metric', 'Value']
     const rows = Object.entries(sales).map(([key, value]) => [
       this.formatKeyName(key),
-      value.toString()
+      String(value || '')
     ])
     return this.createCSVContent(headers, rows)
   }
@@ -303,7 +303,7 @@ class ExportService {
     const headers = ['Metric', 'Value']
     const rows = Object.entries(customer).map(([key, value]) => [
       this.formatKeyName(key),
-      value.toString()
+      String(value || '')
     ])
     return this.createCSVContent(headers, rows)
   }
@@ -317,13 +317,13 @@ class ExportService {
       const headers = ['Month', 'Burn Rate', 'Cash Runway', 'Gross Margin', 'Net Margin', 'Operating Cash Flow', 'Investing Cash Flow', 'Financing Cash Flow']
       const rows = financial.health.map((item: any) => [
         item.month,
-        item.burnRate.toString(),
-        item.cashRunway.toString(),
-        item.grossMargin.toString(),
-        item.netMargin.toString(),
-        item.operatingCashFlow.toString(),
-        item.investingCashFlow.toString(),
-        item.financingCashFlow.toString()
+        String(item.burnRate || 0),
+        String(item.cashRunway || 0),
+        String(item.grossMargin || 0),
+        String(item.netMargin || 0),
+        String(item.operatingCashFlow || 0),
+        String(item.investingCashFlow || 0),
+        String(item.financingCashFlow || 0)
       ])
       csvContent += this.createCSVContent(headers, rows) + '\n\n'
     }
