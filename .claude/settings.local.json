@@ -1,14 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build:*)",
-      "Bash(npm run dev)",
-      "Bash(for:*)",
-      "Bash(do if grep -q \"<Legend\" \"$file\")",
-      "Bash(! grep -q \"import.*Legend\" \"$file\")",
-      "Bash(then echo \"$file\")",
-      "Bash(fi:*)",
-      "Bash(done)"
+      "Bash(npm install jspdf xlsx file-saver)",
+      "Bash(npm install --save-dev @types/file-saver)"
     ],
     "deny": [],
     "ask": []

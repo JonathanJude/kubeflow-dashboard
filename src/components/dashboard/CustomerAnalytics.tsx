@@ -19,6 +19,7 @@ import {
   Legend
 } from 'recharts'
 import { GlassCard } from '@/components/ui/GlassCard'
+import { ExportControls } from '@/components/ui/ExportControls'
 import { formatCompactCurrency, formatPercentage, formatNumber } from '@/lib/utils'
 import { customerSegments, featureAdoption } from '@/data/mockData'
 import {
@@ -116,14 +117,20 @@ export function CustomerAnalytics() {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="flex items-center justify-between mb-6"
       >
-        <h2 className="text-2xl font-bold text-white flex items-center">
-          <Users className="w-6 h-6 mr-2" />
-          Customer Analytics
-        </h2>
-        <div className="flex items-center space-x-2 text-white/80 text-sm">
-          <Star className="w-4 h-4 text-yellow-400" />
-          <span>4.6 avg satisfaction</span>
+        <div className="flex items-center">
+          <h2 className="text-2xl font-bold text-white flex items-center">
+            <Users className="w-6 h-6 mr-2" />
+            Customer Analytics
+          </h2>
+          <div className="flex items-center space-x-2 text-white/80 text-sm ml-6">
+            <Star className="w-4 h-4 text-yellow-400" />
+            <span>4.6 avg satisfaction</span>
+          </div>
         </div>
+        <ExportControls
+          data={{ customer: { segments: customerSegments, growth: customerGrowth, satisfaction: satisfactionBySegment } }}
+          category="customer"
+        />
       </motion.div>
 
       {/* Customer Overview Cards */}

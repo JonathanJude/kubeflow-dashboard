@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import type { MetricCard } from '@/types/finance'
 import { MetricCardComponent } from '@/components/ui/MetricCard'
 import { DateRangeSelector } from '@/components/ui/DateRangeSelector'
+import { ExportControls } from '@/components/ui/ExportControls'
 import { TrendingUp, Activity, DollarSign, Users } from 'lucide-react'
 
 interface ExecutiveSummaryProps {
@@ -46,7 +47,14 @@ export function ExecutiveSummary({ metrics, dateRange, onDateRangeChange }: Exec
           <h1 className="text-4xl font-bold text-white mb-2">Executive Dashboard</h1>
           <p className="text-white/80 text-lg">Kubeflow Technologies - Real-time Financial Overview</p>
         </div>
-        <DateRangeSelector selectedRange={dateRange} onRangeChange={onDateRangeChange} />
+        <div className="flex items-center space-x-3">
+          <ExportControls
+            data={{ executive: metrics }}
+            category="executive"
+            showDateRange={false}
+          />
+          <DateRangeSelector selectedRange={dateRange} onRangeChange={onDateRangeChange} />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

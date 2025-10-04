@@ -12,6 +12,7 @@ import { SalesPerformance } from '@/components/dashboard/SalesPerformance'
 import { CustomerAnalytics } from '@/components/dashboard/CustomerAnalytics'
 import { TeamProductivity } from '@/components/dashboard/TeamProductivity'
 import { MarketAnalysis } from '@/components/dashboard/MarketAnalysis'
+import { ExportControls } from '@/components/ui/ExportControls'
 import {
   executiveMetrics,
   revenueTrends,
@@ -22,7 +23,10 @@ import {
   cohortData,
   anomalies,
   scenarios,
-  executiveBriefings
+  executiveBriefings,
+  operationalMetricsData,
+  salesMetricsData,
+  customerSegments
 } from '@/data/mockData'
 
 export default function Home() {
@@ -34,6 +38,29 @@ export default function Home() {
     setDateRange(days)
     // Simulate loading delay
     setTimeout(() => setIsLoading(false), 500)
+  }
+
+  // Prepare comprehensive export data
+  const allExportData = {
+    executive: executiveMetrics,
+    revenue: {
+      trends: revenueTrends,
+      geographic: geographicRevenue,
+      products: productPerformance
+    },
+    operational: operationalMetricsData,
+    sales: salesMetricsData,
+    customer: {
+      segments: customerSegments,
+      metrics: {
+        totalCustomers: customerSegments.reduce((sum, seg) => sum + seg.customers, 0),
+        avgSatisfaction: customerSegments.reduce((sum, seg) => sum + seg.satisfaction, 0) / customerSegments.length
+      }
+    },
+    financial: {
+      health: financialHealth,
+      unitEconomics: unitEconomics
+    }
   }
 
   return (
@@ -65,6 +92,21 @@ export default function Home() {
               </div>
             </motion.div>
           )}
+
+          {/* Global Export Controls */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 flex justify-end sm:justify-start xs:justify-center"
+          >
+            <ExportControls
+              data={allExportData}
+              category="all"
+              showDateRange={true}
+              className="bg-white/10 backdrop-blur-lg border-white/20"
+            />
+          </motion.div>
 
           {/* Dashboard Sections */}
           <ExecutiveSummary

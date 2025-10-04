@@ -15,6 +15,7 @@ import {
   Legend
 } from 'recharts'
 import { GlassCard } from '@/components/ui/GlassCard'
+import { ExportControls } from '@/components/ui/ExportControls'
 import { formatPercentage, formatNumber } from '@/lib/utils'
 import { operationalTrends, operationalMetricsData } from '@/data/mockData'
 import {
@@ -126,14 +127,20 @@ export function OperationalMetrics() {
         transition={{ duration: 0.8, delay: 0.6 }}
         className="flex items-center justify-between mb-6"
       >
-        <h2 className="text-2xl font-bold text-white flex items-center">
-          <Server className="w-6 h-6 mr-2" />
-          Operational Metrics
-        </h2>
-        <div className="flex items-center space-x-2 text-white/80 text-sm">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          <span>All systems operational</span>
+        <div className="flex items-center">
+          <h2 className="text-2xl font-bold text-white flex items-center">
+            <Server className="w-6 h-6 mr-2" />
+            Operational Metrics
+          </h2>
+          <div className="flex items-center space-x-2 text-white/80 text-sm ml-6">
+            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span>All systems operational</span>
+          </div>
         </div>
+        <ExportControls
+          data={{ operational: operationalMetricsData, trends: operationalTrends }}
+          category="operational"
+        />
       </motion.div>
 
       {/* Key Performance Indicators */}

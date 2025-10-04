@@ -19,6 +19,7 @@ import {
 } from 'recharts'
 import type { RevenueData, GeographicRevenue, ProductPerformance } from '@/types/finance'
 import { GlassCard } from '@/components/ui/GlassCard'
+import { ExportControls } from '@/components/ui/ExportControls'
 import { formatCurrency, formatCompactCurrency, formatPercentage } from '@/lib/utils'
 import { TrendingUp, Globe, Package, ArrowUpRight } from 'lucide-react'
 
@@ -89,14 +90,20 @@ export function RevenueAnalytics({ revenueData, geographicData, productData }: R
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex items-center justify-between mb-6"
       >
-        <h2 className="text-2xl font-bold text-white flex items-center">
-          <TrendingUp className="w-6 h-6 mr-2" />
-          Revenue Analytics
-        </h2>
-        <div className="flex items-center space-x-2 text-white/80 text-sm">
-          <ArrowUpRight className="w-4 h-4 text-green-400" />
-          <span>89% YoY Growth</span>
+        <div className="flex items-center">
+          <h2 className="text-2xl font-bold text-white flex items-center">
+            <TrendingUp className="w-6 h-6 mr-2" />
+            Revenue Analytics
+          </h2>
+          <div className="flex items-center space-x-2 text-white/80 text-sm ml-6">
+            <ArrowUpRight className="w-4 h-4 text-green-400" />
+            <span>89% YoY Growth</span>
+          </div>
         </div>
+        <ExportControls
+          data={{ revenue: { trends: revenueData, geographic: geographicData, products: productData } }}
+          category="revenue"
+        />
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
