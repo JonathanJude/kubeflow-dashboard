@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install jspdf xlsx file-saver)",
-      "Bash(npm install --save-dev @types/file-saver)"
+      "Bash(npm install --save-dev @types/file-saver)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []
